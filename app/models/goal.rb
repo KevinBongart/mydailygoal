@@ -10,7 +10,6 @@ class Goal < ActiveRecord::Base
     return if success_since_last_email?
 
     self.increment(:current_streak)
-    self.record_streak = [current_streak, record_streak].max
     self.last_success_at = Time.now
     self.save
   end
@@ -37,7 +36,8 @@ class Goal < ActiveRecord::Base
   end
 
   def reset_streak!
-    self.update_attributes(current_streak: 0)
+    record = [current_streak, record_streak].max
+    self.update_attributes(current_streak: 0, record_streak: record)
   end
 
   def assign_token

@@ -5,21 +5,27 @@ class UserMailer < ActionMailer::Base
 
   def awyea(goal)
     @goal = goal
-    @user = goal.user
     @awyea_url = awyea_goal_url(@goal, host: "mydailygoal.net")
     @edit_goal_url = edit_goal_url(@goal, host: "mydailygoal.net")
 
-    subject = @goal.new_goal? ? "a fresh start" : "#{@goal.current_streak}-day streak"
+    if @goal.new_goal?
+      subject = "a fresh start"
+    elsif @goal.current_streak == 1
+      subject = "off to a good start"
+    elsif @goal.current_streak > @goal.record_streak
+      subject = "#{@goal.current_streak}-day streak, new record!"
+    else
+      subject = "#{@goal.current_streak}-day streak"
+    end
 
-    mail(to: @user.email, subject: "#{@goal.name}: #{subject}")
+    mail(to: @goal.email, subject: "#{@goal.name}: #{subject}")
   end
 
   def ohnoes(goal)
     @goal = goal
-    @user = goal.user
     @awyea_url = awyea_goal_url(@goal, host: "mydailygoal.net")
     @edit_goal_url = edit_goal_url(@goal, host: "mydailygoal.net")
 
-    mail(to: @user.email, subject: "#{@goal.name}: a fresh start")
+    mail(to: @goal.email, subject: "#{@goal.name}: a fresh start")
   end
 end
