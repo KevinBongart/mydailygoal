@@ -1,8 +1,10 @@
 <%= simple_form_for(@goal) do |f| %>
+  <% hint_links = @hints.map { |h| link_to h, root_path(hint: h.parameterize) } %>
+
   <%= f.input :name,
-    placeholder: @hints.pop,
+    placeholder: @hints.first,
     label: false,
-    hint: "For instance: #{@hints.join(' &middot; ')}".html_safe
+    hint: "For instance: #{hint_links.join(' &middot; ')}".html_safe
   %>
 
   <%= f.input :email,

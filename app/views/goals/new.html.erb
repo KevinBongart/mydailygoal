@@ -1,3 +1,19 @@
 <h3>What's your daily goal?</h3>
 
 <%= render 'form' %>
+
+<hr>
+
+<p>What to expect? A daily email like this:</p>
+
+<div class="well">
+  <p><em>From:</em> hello@mydailygoal.com</p>
+  <p><em>Subject:</em> <%= "#{@hints.first}: #{@sample_goal.current_streak}-day streak" %></p>
+  <p>Heyooo! Did you meet your daily goal?</p>
+  <p>AW YEA! <%= link_to awyea_goal_url(@sample_goal), "#" %></p>
+  <p>
+    --<br/>
+    Edit your settings here: <%= link_to edit_goal_url(@sample_goal), "#" %>
+  </p>
+
+</div>
