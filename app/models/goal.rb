@@ -1,7 +1,6 @@
 class Goal < ActiveRecord::Base
-  belongs_to :user
-
   before_create :assign_token
+  validates_presence_of :name, :email
 
   def to_param
     "#{token}-#{name.parameterize}"

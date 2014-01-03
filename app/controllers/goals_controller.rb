@@ -8,27 +8,22 @@ class GoalsController < ApplicationController
   # GET /goals/new
   def new
     @goal = Goal.new
-    @hints = [
-      "Quit smoking",
-      "Exercise",
-      "Cook",
-      "Wake up early",
-      "Hit the gym"
-    ].shuffle
+    set_hints
   end
 
   # GET /goals/1/edit
   def edit
+    set_hints
   end
 
   # POST /goals
   def create
     @goal = Goal.new(goal_params)
-    @goal.user = User.find_or_create_by_email(goal_params[:user_id])
 
     if @goal.save
       redirect_to @goal, notice: "Great! Expect an email tomorrow morning."
     else
+      set_hints
       render action: "new"
     end
   end
@@ -48,14 +43,25 @@ class GoalsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_goal
-      token = params[:id].split("-").first
-      @goal = Goal.find_by_token(token)
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def goal_params
-      params.require(:goal).permit(:name, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_goal
+    token = params[:id].split("-").first
+    @goal = Goal.find_by_token(token)
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def goal_params
+    params.require(:goal).permit(:name, :email)
+  end
+
+  def set_hints
+    @hints = [
+      "Quit smoking",
+      "Exercise",
+      "Cook",
+      "Wake up early",
+      "Hit the gym"
+    ].shuffle
+  end
 end

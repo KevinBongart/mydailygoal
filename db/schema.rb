@@ -11,24 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103165713) do
+ActiveRecord::Schema.define(version: 20140102224219) do
 
   create_table "goals", force: true do |t|
+    t.string   "email"
     t.string   "name"
     t.string   "token"
     t.integer  "current_streak",     default: 0
     t.integer  "record_streak",      default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "last_success_at"
-    t.integer  "user_id"
     t.datetime "last_email_sent_at"
-  end
-
-  add_index "goals", ["user_id"], name: "index_goals_on_user_id"
-
-  create_table "users", force: true do |t|
-    t.string   "email"
+    t.datetime "last_success_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

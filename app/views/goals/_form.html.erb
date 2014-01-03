@@ -5,11 +5,9 @@
     hint: "For instance: #{@hints.join(' &middot; ')}".html_safe
   %>
 
-  <%= f.association :user,
+  <%= f.input :email,
     placeholder: "email@address.com",
-    label: false,
-    as: :string,
-    input_html: { value: @goal.user.try(:email) }
+    label: false
   %>
 
   <%= f.button :submit, "Kick some ass" %>
