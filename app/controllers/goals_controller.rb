@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy, :awyea]
+  before_action :set_hints, only: [:new, :edit, :create, :update]
 
   # GET /goals/1
   def show
@@ -8,12 +9,10 @@ class GoalsController < ApplicationController
   # GET /goals/new
   def new
     @goal = Goal.new
-    set_hints
   end
 
   # GET /goals/1/edit
   def edit
-    set_hints
   end
 
   # POST /goals
@@ -23,7 +22,6 @@ class GoalsController < ApplicationController
     if @goal.save
       redirect_to @goal, notice: "Great! Expect an email tomorrow morning."
     else
-      set_hints
       render action: "new"
     end
   end
@@ -31,10 +29,16 @@ class GoalsController < ApplicationController
   # PATCH/PUT /goals/1
   def update
     if @goal.update(goal_params)
-      redirect_to @goal, notice: "Goal was successfully updated."
+      redirect_to @goal, notice: "All good!"
     else
       render action: "edit"
     end
+  end
+
+  # DELETE /goals/1
+  def destroy
+    @goal.destroy
+    redirect_to root_path, notice: "No hard feelings!"
   end
 
   def awyea
