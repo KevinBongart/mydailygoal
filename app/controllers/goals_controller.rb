@@ -11,9 +11,9 @@ class GoalsController < ApplicationController
     @goal = Goal.new
 
     if hint = params[:hint]
-      hint = hint.gsub(/-/, ' ').humanize
-      @hints.delete(hint)
-      @hints.unshift(hint)
+      @hint = hint.underscore.humanize
+      @hints.delete(@hint)
+      @hints.unshift(@hint)
     end
 
     @sample_goal = Goal.new(name: @hints.first, token: "d313a8ed", current_streak: rand(9..17))
