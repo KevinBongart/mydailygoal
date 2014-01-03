@@ -1,20 +1,20 @@
 class GoalsController < ApplicationController
-  before_action :set_goal, only: [:show, :edit, :update, :destroy, :awyea, :ohnoes]
-
-  # GET /goals
-  # GET /goals.json
-  def index
-    @goals = Goal.all
-  end
+  before_action :set_goal, only: [:show, :edit, :update, :destroy, :awyea]
 
   # GET /goals/1
-  # GET /goals/1.json
   def show
   end
 
   # GET /goals/new
   def new
     @goal = Goal.new
+    @hints = [
+      "Quit smoking",
+      "Exercise",
+      "Cook",
+      "Wake up early",
+      "Hit the gym"
+    ].shuffle
   end
 
   # GET /goals/1/edit
@@ -22,43 +22,23 @@ class GoalsController < ApplicationController
   end
 
   # POST /goals
-  # POST /goals.json
   def create
     @goal = Goal.new(goal_params)
     @goal.user = User.find_or_create_by_email(goal_params[:user_id])
 
-    respond_to do |format|
-      if @goal.save
-        format.html { redirect_to @goal, notice: "Great! Expect an email tomorrow morning." }
-        format.json { render action: 'show', status: :created, location: @goal }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-      end
+    if @goal.save
+      redirect_to @goal, notice: "Great! Expect an email tomorrow morning."
+    else
+      render action: "new"
     end
   end
 
   # PATCH/PUT /goals/1
-  # PATCH/PUT /goals/1.json
   def update
-    respond_to do |format|
-      if @goal.update(goal_params)
-        format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @goal.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /goals/1
-  # DELETE /goals/1.json
-  def destroy
-    @goal.destroy
-    respond_to do |format|
-      format.html { redirect_to goals_url }
-      format.json { head :no_content }
+    if @goal.update(goal_params)
+      redirect_to @goal, notice: "Goal was successfully updated."
+    else
+      render action: "edit"
     end
   end
 
@@ -71,11 +51,6 @@ class GoalsController < ApplicationController
     end
 
     redirect_to @goal, notice: "You're awesome!"
-  end
-
-  def ohnoes
-    @goal.update_attributes(current_streak: 0, last_success_at: nil)
-    redirect_to @goal
   end
 
   private

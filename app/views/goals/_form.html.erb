@@ -1,10 +1,16 @@
 <%= simple_form_for(@goal) do |f| %>
-  <%= f.input :name, placeholder: "Run everyday", label: false %>
+  <%= f.input :name,
+    placeholder: @hints.pop,
+    label: false,
+    hint: "For instance: #{@hints.join(' &middot; ')}".html_safe
+  %>
+
   <%= f.association :user,
     placeholder: "email@address.com",
     label: false,
     as: :string,
     input_html: { value: @goal.user.try(:email) }
   %>
+
   <%= f.button :submit, "Kick some ass" %>
 <% end %>
