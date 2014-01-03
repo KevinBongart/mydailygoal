@@ -29,7 +29,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to @goal, notice: "Awesome! Expect an email tomorrow morning." }
+        format.html { redirect_to @goal, notice: "Great! Expect an email tomorrow morning." }
         format.json { render action: 'show', status: :created, location: @goal }
       else
         format.html { render action: 'new' }
@@ -70,7 +70,7 @@ class GoalsController < ApplicationController
       @goal.save
     end
 
-    redirect_to @goal
+    redirect_to @goal, notice: "You're awesome!"
   end
 
   def ohnoes
