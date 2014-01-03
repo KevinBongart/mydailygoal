@@ -43,13 +43,7 @@ class GoalsController < ApplicationController
   end
 
   def awyea
-    unless @goal.last_success_at.try(:today?)
-      @goal.increment(:current_streak)
-      @goal.record_streak = [@goal.current_streak, @goal.record_streak].max
-      @goal.last_success_at = Time.now
-      @goal.save
-    end
-
+    @goal.success!
     redirect_to @goal, notice: "You're awesome!"
   end
 

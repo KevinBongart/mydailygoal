@@ -3,10 +3,23 @@ class UserMailer < ActionMailer::Base
 
   default from: 'hello@streakapp.com'
 
-  def daily_email(goal)
+  def awyea(goal)
     @goal = goal
     @user = goal.user
-    @url  = awyea_goal_url(@goal, host: "streakapp.herokuapp.com")
-    mail(to: @user.email, subject: "#{@goal.name}: day #{@goal.current_streak}")
+    @awyea_url = awyea_goal_url(@goal, host: "streakapp.herokuapp.com")
+    @edit_goal_url = edit_goal_url(@goal, host: "streakapp.herokuapp.com")
+
+    subject = @goal.new_goal? ? "a fresh start" : "#{@goal.current_streak}-day streak"
+
+    mail(to: @user.email, subject: "#{@goal.name}: #{subject}")
+  end
+
+  def ohnoes(goal)
+    @goal = goal
+    @user = goal.user
+    @awyea_url = awyea_goal_url(@goal, host: "streakapp.herokuapp.com")
+    @edit_goal_url = edit_goal_url(@goal, host: "streakapp.herokuapp.com")
+
+    mail(to: @user.email, subject: "#{@goal.name}: a fresh start")
   end
 end
