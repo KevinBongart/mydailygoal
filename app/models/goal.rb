@@ -4,7 +4,7 @@ class Goal < ActiveRecord::Base
   before_create :assign_token
 
   def to_param
-    "#{token}-#{name}"
+    "#{token}-#{name.parameterize}"
   end
 
   private
@@ -14,6 +14,6 @@ class Goal < ActiveRecord::Base
   end
 
   def unique_token?
-    Goal.where(token: self.token).empty?
+    self.token.present? && Goal.where(token: self.token).empty?
   end
 end

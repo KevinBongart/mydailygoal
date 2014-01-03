@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="text-center"><%= @goal.name %></h1>
 
 <p>
@@ -12,5 +10,4 @@
   <%= pluralize @goal.record_streak, "day" %>
 </p>
 
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<%= link_to 'Edit', edit_goal_path(@goal) %>
