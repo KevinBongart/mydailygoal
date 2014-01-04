@@ -19,9 +19,13 @@
     <%= "#{@hints.first}: #{@sample_goal.current_streak}-day streak, new record!" %>
   </p>
 
-  <p>Heyooo! Did you meet your daily goal?</p>
+  <p>Heyooo! Did you meet your daily goal? If you did, click here:</p>
 
-  <p>AW YEA! <%= link_to awyea_goal_url(@sample_goal), "#" %></p>
+  <p><%= link_to awyea_goal_url(@sample_goal), "#" %></p>
+
+  <p>If you missed your goal, no worries: we'll try again tomorrow.</p>
+
+  <p>Keep being awesome.</p>
 
   <p>
     --<br/>
