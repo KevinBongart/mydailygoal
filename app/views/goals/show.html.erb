@@ -1,13 +1,20 @@
-<h1 class="text-center"><%= @goal.name %></h1>
+<div class="header" id="goal-name">
+  <h1><%= @goal.name %></h1>
+</div>
 
-<p>
-  <strong>Current streak:</strong>
+<h4>
+  Current streak:
   <%= pluralize @goal.current_streak, "day" %>
-</p>
+  <% if @goal.current_streak > @goal.record_streak %>
+    <span class="badge badge-success">New record!</span>
+  <% end %>
+</h4>
 
-<p>
-  <strong>Record streak:</strong>
-  <%= pluralize @goal.record_streak, "day" %>
-</p>
+<% if @goal.record_streak > 0 %>
+  <p>
+    Previous record:
+    <%= pluralize @goal.record_streak, "day" %>
+  </p>
+<% end %>
 
 <%= link_to 'settings', edit_goal_path(@goal) %>
