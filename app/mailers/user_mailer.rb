@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   include Rails.application.routes.url_helpers
 
-  default from: 'hello@mydailygoal.net'
+  default from: "\"My Daily Goal\" <hello@mydailygoal.net>"
 
   def awyea(goal)
     @goal = goal
