@@ -17,4 +17,8 @@
   </p>
 <% end %>
 
+<% if @goal.current_streak > @goal.record_streak %>
+  <p><%= image_tag "mister_t.gif" %></p>
+<% end %>
+
 <%= link_to 'settings', edit_goal_path(@goal) %>
