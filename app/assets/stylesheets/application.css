@@ -92,3 +92,12 @@
      border-bottom: 0;
    }
  }
+
+input[type="text"].input-xlarge,
+input[type="email"].input-xlarge {
+  border-radius: 6px;
+  font-size: 18px;
+  height: 18px;
+  line-height: 1.33;
+  padding: 8px;
+}

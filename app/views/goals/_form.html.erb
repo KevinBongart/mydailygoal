@@ -1,18 +1,26 @@
 <%= simple_form_for(@goal) do |f| %>
   <% if @goal.new_record? %>
     <%= f.input :name,
-      placeholder: @hints.first,
       label: false,
+      placeholder: @hints.first,
       hint: "For instance: #{hint_links(@hints)}".html_safe,
-      input_html: { value: @hint }
+      input_html: {
+        value: @hint,
+        class: "input-xlarge"
+      }
     %>
   <% else %>
-    <%= f.input :name, label: false, placeholder: @goal.name %>
+    <%= f.input :name,
+      label: false,
+      placeholder: @goal.name,
+      input_html: { class: "input-xlarge" }
+    %>
   <% end %>
 
   <%= f.input :email,
+    label: false,
     placeholder: @goal.email || "email@address.com",
-    label: false
+    input_html: { class: "input-xlarge" }
   %>
 
   <%= f.button :submit, "Kick some ass", class: "btn-success" %>
