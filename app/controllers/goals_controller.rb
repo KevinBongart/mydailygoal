@@ -73,7 +73,7 @@ class GoalsController < ApplicationController
       "Exercise",
       "Cook",
       "Wake up early",
-      "Hit the gym"
+      "Read"
     ].shuffle
   end
 end
