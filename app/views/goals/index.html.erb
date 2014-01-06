@@ -1,0 +1,22 @@
+<table class="table table-hover table-stripped">
+  <thead>
+    <tr>
+      <th>Goal</th>
+      <th>Email</th>
+      <th>Current streak</th>
+      <th>Record streak</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @goals.each do |goal| %>
+      <%= content_tag(:tr, class: "#{'success' if goal.success_since_last_email?}") do %>
+        <%= content_tag(:td, goal.name) %>
+        <%= content_tag(:td, goal.email) %>
+        <%= content_tag(:td, goal.current_streak) %>
+        <%= content_tag(:td, goal.record_streak.zero? ? "" : goal.record_streak) %>
+        <%= content_tag(:td, "#{time_ago_in_words goal.created_at} ago") %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

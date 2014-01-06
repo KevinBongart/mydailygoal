@@ -1,5 +1,5 @@
 Streak::Application.routes.draw do
-  resources :goals, except: [:index] do
+  resources :goals do
     member do
       get :awyea
     end

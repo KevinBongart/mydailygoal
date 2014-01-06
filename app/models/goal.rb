@@ -29,11 +29,11 @@ class Goal < ActiveRecord::Base
     last_success_at.nil? && last_email_sent_at.nil?
   end
 
-  private
-
   def success_since_last_email?
     last_success_at && last_email_sent_at && last_success_at > last_email_sent_at
   end
+
+  private
 
   def reset_streak!
     record = [current_streak, record_streak].max
