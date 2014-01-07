@@ -5,7 +5,7 @@ class GoalsController < ApplicationController
   http_basic_authenticate_with name: "admin", password: "ick5lAip0Cec7naW8jeeNs9ik3veG5", only: :index
 
   def index
-    @goals = Goal.all
+    @goals = Goal.order(created_at: :desc)
   end
 
   # GET /goals/1
