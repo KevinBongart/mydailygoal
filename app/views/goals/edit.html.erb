@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'back', @goal %>
+<%= link_to 'back', @goal, class: "pull-left" %>
 <%= link_to 'cancel this goal', @goal, confirm: 'Are you sure?', method: :delete, class: "pull-right" %>
