@@ -1,26 +1,25 @@
-<%= simple_form_for(@goal) do |f| %>
-  <% if @goal.new_record? %>
-    <%= f.input :name,
-      label: false,
-      placeholder: @hints.first,
-      input_html: {
-        value: @hint,
-        class: "input-xlarge"
-      }
-    %>
-  <% else %>
-    <%= f.input :name,
-      label: false,
-      placeholder: @goal.name,
-      input_html: { class: "input-xlarge" }
-    %>
-  <% end %>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= simple_form_for(@goal) do |f| %>
+      <% if @goal.new_record? %>
+        <%= f.input :name,
+          label: false,
+          placeholder: @hints.first,
+          input_html: { value: @hint }
+        %>
+      <% else %>
+        <%= f.input :name,
+          label: false,
+          placeholder: @goal.name
+        %>
+      <% end %>
 
-  <%= f.input :email,
-    label: false,
-    placeholder: @goal.email || "email@address.com",
-    input_html: { class: "input-xlarge" }
-  %>
+      <%= f.input :email,
+        label: false,
+        placeholder: @goal.email || "email@address.com"
+      %>
 
-  <%= f.button :submit, "Kick some ass", class: "btn-success" %>
-<% end %>
+      <%= f.button :submit, "Kick some ass", class: "btn-success" %>
+    <% end %>
+  </div>
+</div>

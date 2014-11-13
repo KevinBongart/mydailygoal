@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Streak::Application.load_tasks
+MyDailyGoal::Application.load_tasks

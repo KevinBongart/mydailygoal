@@ -1,4 +1,4 @@
-Streak::Application.routes.draw do
+MyDailyGoal::Application.routes.draw do
   resources :goals do
     member do
       get :awyea

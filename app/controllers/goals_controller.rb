@@ -2,7 +2,7 @@ class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy, :awyea]
   before_action :set_hints, only: [:new, :edit, :create, :update]
 
-  http_basic_authenticate_with name: "admin", password: "ick5lAip0Cec7naW8jeeNs9ik3veG5", only: :index
+  http_basic_authenticate_with name: "admin", password: Rails.application.secrets.admin_password, only: :index
 
   def index
     @goals = Goal.order(created_at: :desc)
