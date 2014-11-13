@@ -14,6 +14,7 @@ What?
 It's a nifty little Rails app that sends users an email a day for each one of their goals. Something like this:
 
 > *From:* hello@mydailygoal.net
+
 > *Subject:* Wake up early: 12-day streak, new record!
 
 > Heyooo! Did you meet your daily goal? If you did, click here:
